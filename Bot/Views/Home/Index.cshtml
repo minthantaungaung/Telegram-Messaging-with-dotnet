@@ -1,0 +1,106 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<link href="~/lib/font-awesome-4.7.0/css/font-awesome.css" rel="stylesheet" />
+<div class="container-fluid">
+    <div class="row rounded-lg overflow-hidden shadow">
+        <!-- Users box-->
+        <div class="col-5 px-0">
+            <div class="bg-white">
+
+                <div class="bg-gray px-4 py-2 bg-light">
+                    <p class="h5 mb-0 py-1">Recent</p>
+                </div>
+
+                <div class="messages-box">
+                    <div class="list-group rounded-0">
+                        <a class="list-group-item list-group-item-action active text-white rounded-0">
+                            <div class="media">
+                                <img src="https://th.bing.com/th/id/OIP.x7X2oAehk5M9IvGwO_K0PgHaHa?pid=ImgDet&rs=1" alt="user" width="50" class="rounded-circle">
+                                <div class="media-body ml-4">
+                                    <div class="d-flex align-items-center justify-content-between mb-1">
+                                        <h6 class="mb-0">Min Thant Aung Aung</h6><small class="small font-weight-bold">@DateTime.Now.ToString("dd MMM yy")</small>
+                                    </div>
+                                    <p class="font-italic mb-0 text-small">Lorem ipsum dolor sit </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Chat Box-->
+        <div class="col-7 px-0">
+            <div class="px-4 py-5 chat-box bg-white">
+                <!-- Sender Message-->
+                <div class="media w-50 mb-3">
+                    <img src="https://th.bing.com/th/id/OIP.x7X2oAehk5M9IvGwO_K0PgHaHa?pid=ImgDet&rs=1" alt="user" width="50" class="rounded-circle">
+                    <div class="media-body ml-3">
+                        <div class="bg-light rounded py-2 px-3 mb-2">
+                            <p class="text-small mb-0 text-muted">Lorem ipsum dolor sit</p>
+                        </div>
+                        <p class="small text-muted">@DateTime.Now.ToString("dd MMM yy")</p>
+                    </div>
+                </div>
+
+                <!-- Reciever Message-->
+                <div class="media w-50 ml-auto mb-3">
+                    <div class="media-body">
+                        <div class="bg-primary rounded py-2 px-3 mb-2">
+                            <p class="text-small mb-0 text-white rmsg">Testing MT 11232</p>
+                        </div>
+                        <p class="small text-muted">@DateTime.Now.ToString("dd MMM yy")</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Typing area -->
+            <form action="#" class="bg-light">
+                <div class="input-group">
+                    <input type="text" placeholder="Type a message" id="message" aria-describedby="button-addon2" class="form-control rounded-0 border-0 py-4 bg-light">
+                    <div class="input-group-append">
+                        <button id="button-addon2" type ="submit"class="btn btn-light"> <i class="fa fa-paper-plane subtn"></i></button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    @*<div class="card">
+        <div class="card-header"></div>
+        <div class="card-body">
+            <div class="info">
+
+            </div>
+        </div>
+    </div>*@
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(function () {
+        info();
+    })
+
+    function info() {
+         $.ajax({
+            cache: false,
+            url: '@Url.Action("BotInfo", "Home")',
+            data: {},
+             success: function (e) {
+                 $('.info').empty().append(e);
+            },
+        });
+    }
+
+    $('.subtn').on('click', function () {
+        var msg = $('#message').val();
+        $.ajax({
+            cache: false,
+            url: '@Url.Action("sendMsg", "Home")',
+            data: { msg: msg },
+            success: function (e) {
+                $('.rmsg').empty().append(e);
+            },
+        });
+    })
+</script>
