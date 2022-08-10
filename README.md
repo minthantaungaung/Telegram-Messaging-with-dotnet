@@ -6,7 +6,8 @@ This project is used telegram bot and bot API intented for messaging to specific
 <h3>Technologies</h3>
 <ul>
 <li>ASP.NET Core</li>
-<li>HTML, CSS, JavaScript, JQuery</li>
+<li>HTML, CSS, Bootstrap</li>
+<li> JavaScript, JQuery</li>
 <li>Telegram Bot API</li>
 </ul>
 </html>
